@@ -215,6 +215,7 @@ const newMods=[
 "cosmetics-1.0.0.jar",
 "cryonicconfig-forge-1.0.0+mc1.20.1.jar",
 "curios-forge-5.14.1+1.20.1.jar",
+"cwb-forge-3.0.0+mc1.20.jar",
 "darwiniv-1.0.0-forge-1.20.1 beta ver.jar",
 "decorative_blocks-forge-1.20.1-4.1.3.jar",
 "decorative_core-2.0705-forge-1.20.1.jar",
@@ -237,6 +238,7 @@ const newMods=[
 "Essential_1-4-0-2_forge_1-20-1.jar",
 "eureka-1201-1.6.3.jar",
 "evenbetternether-1.3.1-forge-1.20.1.jar",
+"Evolved Mekanism-1.20.1-1.2.1-fix4.jar",
 "ExplorersCompass-1.20.1-1.4.0-forge.jar",
 "fabric-api-0.92.6+1.11.14+1.20.1.jar",
 "factory_blocks-forge-1.4.0+mc1.20.1.jar",
@@ -260,6 +262,8 @@ const newMods=[
 "hammers-2.1.5-1.20.1-forge.jar",
 "harmfulsmoke-1.0.7-alpha-forge-1.20.1.jar",
 "HorseExpert-v8.1.1-1.20.1-Forge.jar",
+"HostileNeuralNetworks-1.20.1-5.3.3.jar",
+"Iglee's Library-1.20.1-1.2.7.jar",
 "ImmediatelyFast-Forge-1.5.4+1.20.4.jar",
 "ImmersiveEngineering-1.20.1-10.2.0-183.jar",
 "industrial-foregoing-1.20.1-3.5.22.jar",
@@ -282,8 +286,12 @@ const newMods=[
 "letsdo-wildernature-forge-1.0.6.jar",
 "littlelogistics-mc1.20.1-v1.20.1.1.jar",
 "Mantle-1.20.1-1.11.104.jar",
+"mcef-cache",
+"mcef-libraries",
 "MCT-RS-Mixin-1.20.1-1.0.0-b400-release.jar",
+"mekalights-1.2.4.jar",
 "Mekanism-1.20.1-10.4.16.80.jar",
+"MekanismGenerators-1.20.1-10.4.16.80.jar",
 "memoryleakfix-forge-1.17+-1.1.5.jar",
 "mexicans_delight-1.3.0-forge-1.20.1.jar",
 "modernfix-forge-5.27.51+mc1.20.1.jar",
@@ -291,6 +299,7 @@ const newMods=[
 "morehitboxes-forge-1.20.1-1.9.2.jar",
 "moremobility-0.1.2.jar",
 "MouseTweaks-forge-mc1.20.1-2.25.1.jar",
+"movingelevators-1.4.12-forge-mc1.20.1.jar",
 "MRU-1.0.4+1.20.1+forge.jar",
 "naturalist-5.0pre3+forge-1.20.1.jar",
 "naturalistmod-1.1.1FORGE.jar",
@@ -304,7 +313,9 @@ const newMods=[
 "OneEnoughItem-1.0.8.jar",
 "Patchouli-1.20.1-85-FORGE.jar",
 "PickUpNotifier-v8.0.0-1.20.1-Forge.jar",
+"Placebo-1.20.1-8.6.3.jar",
 "polymorph-forge-0.49.10+1.20.1.jar",
+"Prehistoric_Fauna-2.3.3.jar",
 "PuzzlesLib-v8.1.33-1.20.1-Forge.jar",
 "refinedcooking-4.0.0.jar",
 "refinedpolymorph-0.1.1-1.20.1.jar",
@@ -327,6 +338,7 @@ const newMods=[
 "sophisticatedcore-1.20.1-1.3.55.2031.jar",
 "sophisticatedstorage-1.20.1-1.4.57.1848.jar",
 "Sounds-2.2.1+1.20.1+forge.jar",
+"spudaciousshops-1.10.2-forge-1.20.1.jar",
 "stackedblocks-25.02.13-1.20-forge.jar",
 "stackedblocksfarmersdelight-25.02.13-1.20-forge.jar",
 "stackedblockssupplementaries-25.05.06-1.20-forge.jar",
@@ -416,6 +428,7 @@ render(f);
 });
 
 render(result);
+
 
 
 
