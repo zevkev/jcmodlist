@@ -3,280 +3,184 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JurassicCraft – Mod Ausgrabung</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<title>JurassicCraft &bull; Modpack &amp; Whitelist</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header>
-<div class="header-bg"></div>
-<div class="header-inner">
-<span class="fossil">🦴</span>
-<h1>Jurassic<span class="gold">Craft</span></h1>
-<p class="slogan">Mod Ausgrabung</p>
-<div class="line"></div>
+<div id="bg-leaves"></div>
+
+<div id="wrap">
+
+<div id="header">
+<div id="header-inner">
+<div id="logo">
+<h1>Jurassic<span class="g">Craft</span></h1>
+<p class="subh">Modpack &amp; Server &bull; Forge 1.20.1</p>
 </div>
-</header>
-
-<main>
-
-<div class="row row-double">
-
-<div class="card card-ip">
-<div class="card-label">SERVER BEITRETEN</div>
-<div class="ip-box">
-<span class="ip">jurassiccraft.dat.airforce</span>
+<div id="glow"></div>
 </div>
-<button class="copy-btn" onclick="navigator.clipboard.writeText('jurassiccraft.dat.airforce');this.textContent='✗ KOPIERT';setTimeout(()=>this.textContent='✗ IP KOPIEREN',2000)">✗ IP KOPIEREN</button>
+<div class="header-shine"></div>
 </div>
 
-<div class="card card-dl">
-<div class="card-label">MODPAKET</div>
-<a href="https://1drv.ms/u/c/034c5c22a8323c3a/IQCRLgoNF0CiSpGHphQ5jO-vAeYoa1B08lWlZ8oEV3Y1Qpc?e=KACLpa" class="dl-btn" target="_blank" rel="noopener">⬇ HERUNTERLADEN</a>
-<div class="tags">
-<span class="tag">10 GB RAM</span>
-<span class="tag">Forge 1.20.1</span>
+<div id="nav">
+<a href="#" onclick="scrollTo(0,0)">Home</a>
+<a href="#server">Server</a>
+<a href="#whitelist">Whitelist</a>
+<a href="#game">Game</a>
+<a href="#mods">Mods</a>
+<div class="nav-glow"></div>
+</div>
+
+<div id="content">
+
+<div class="box glass" id="server">
+<div class="box-ribbon"></div>
+<h2 class="box-h"><span class="ic">&#9679;</span> Server</h2>
+<div class="box-inner">
+<table class="srv" cellpadding="0" cellspacing="0">
+<tr>
+<td class="srv-ip">
+<span class="lbl">Server IP</span>
+<span class="ip" onclick="navigator.clipboard.writeText('jurassiccraft.dat.airforce');this.innerHTML='COPIED!';setTimeout(()=>this.innerHTML='jurassiccraft.dat.airforce',2000)">jurassiccraft.dat.airforce</span>
+<span class="sub">Click to copy</span>
+</td>
+<td class="srv-dl">
+<span class="lbl">Modpack</span>
+<a href="https://1drv.ms/u/c/034c5c22a8323c3a/IQCRLgoNF0CiSpGHphQ5jO-vAeYoa1B08lWlZ8oEV3Y1Qpc?e=KACLpa" class="dl-btn" target="_blank" rel="noopener"><span class="dl-ic">&#9660;</span> Download</a>
+<span class="sub">10 GB RAM empfohlen</span>
+</td>
+</tr>
+</table>
 </div>
 </div>
 
+<div class="box glass" id="whitelist">
+<div class="box-ribbon"></div>
+<h2 class="box-h"><span class="ic">&#9679;</span> Whitelist</h2>
+<div class="box-inner">
+<p class="desc">Gib deinen Minecraft-Namen ein, um auf die Whitelist zu kommen.</p>
+<div id="wlForm" class="wl-form">
+<input type="text" id="wlInput" placeholder="Dein Username..." maxlength="16">
+<input type="submit" value="Absenden" onclick="submitWL()">
+</div>
+<div id="wlMsg"></div>
+</div>
 </div>
 
-<div class="card card-game" id="gameCard" style="display:none">
-<div class="card-label">UM DIE ZEIT TOT ZU SCHLAGEN</div>
-<canvas id="gameCanvas" width="700" height="200"></canvas>
-<div class="game-ui">
-<span class="game-score" id="gameScore">0</span>
-<span class="game-hs" id="gameHS">BEST: 0</span>
-<span class="game-hint" id="gameHint">KLICKEN / LEERTASTE</span>
+<div class="box glass" id="game" style="display:none">
+<div class="box-ribbon"></div>
+<h2 class="box-h"><span class="ic">&#9679;</span> Dinosaur Runner</h2>
+<div class="box-inner">
+<p class="desc">Zum Zeitvertreib, während du auf die Whitelist wartest:</p>
+<canvas id="c" width="700" height="200"></canvas>
+<div class="g-bar">
+<span class="g-s">Score: <b id="score">0</b></span>
+<span class="g-h">Best: <b id="hs">0</b></span>
+<span class="g-t" id="hint">Drücke SPACE oder klicke zum Springen</span>
 </div>
 </div>
-
-<div class="card card-whitelist">
-<div class="card-label">WHITELIST</div>
-<div class="wl-inner" id="wlForm">
-<input type="text" id="wlInput" class="wl-input" placeholder="Dein Minecraft-Name ..." maxlength="16">
-<button class="wl-btn" onclick="submitWhitelist()">✗ ABSENDEN</button>
-</div>
-<div class="wl-msg" id="wlMsg"></div>
 </div>
 
-<div class="card card-diff">
-<div class="card-label">ÄNDERUNGEN</div>
-<div class="diff-bar" id="diffBar"></div>
-<div class="stats" id="stats"></div>
+<div class="box glass" id="mods">
+<div class="box-ribbon"></div>
+<h2 class="box-h"><span class="ic">&#9679;</span> Mod-Liste <span class="subh">(<span id="totalMods"></span> Mods)</span></h2>
+<div class="box-inner">
+
+<div id="diffBar" class="diff-bar"></div>
+<div id="stats" class="stats-box"></div>
 <div class="legend">
-<span><span class="d dot-grey"></span> Gleich</span>
-<span><span class="d dot-green"></span> Neu</span>
-<span><span class="d dot-red"></span> Entfernt</span>
+<span class="lg lg-eq"><span class="lg-dot"></span> Gleich</span>
+<span class="lg lg-new"><span class="lg-dot"></span> Neu</span>
+<span class="lg lg-rem"><span class="lg-dot"></span> Entfernt</span>
+</div>
+
+<div id="filters" class="filters-bar"></div>
+
+<input type="text" id="search" class="sbox" placeholder="Mods durchsuchen...">
+
+<div id="modList"></div>
+<div id="noResults"><br><em>Keine Mods gefunden.</em></div>
+
 </div>
 </div>
 
-<div class="card card-filters">
-<div class="card-label">ANSICHT</div>
-<div class="filters" id="filters"></div>
 </div>
 
-<div class="card card-search">
-<div class="card-label">SUCHE</div>
-<input type="text" id="search" placeholder="Mod suchen ...">
+<div id="footer">
+<div class="ft-inner">
+<p>JurassicCraft &bull; Created by ZevKev &bull; 2006-2026</p>
+<p class="fs">jurassiccraft.dat.airforce</p>
+</div>
 </div>
 
-<div class="card card-list">
-<div class="card-label">MODLISTE</div>
-<div class="mod-list" id="modList"></div>
-<div class="no-results" id="noResults">Keine Mods gefunden</div>
 </div>
-
-</main>
-
-<footer>
-<span class="f1">JURASSIC CRAFT</span>
-<span class="f2">Erstellt von ZevKev &middot; <span class="ip-inline">jurassiccraft.dat.airforce</span></span>
-</footer>
 
 <script>
-let gameReady=0,gc,ctx,W=700,H=200;
-function startGame(){
-if(gameReady)return;
-gameReady=1;
-document.getElementById('gameCard').style.display='block';
-gc=document.getElementById('gameCanvas');
-ctx=gc.getContext('2d');
-const G=0.6,J=-11,GROUND=158;
-let dino,obs,stars,fr,sc,sp,go,hs;
-function init(){
-dino={x:60,y:GROUND-24,w:20,h:24,vy:0,leg:0};
-obs=[];stars=[];fr=0;sc=0;sp=5;go=0;
-for(let i=0;i<5;i++)stars.push({x:Math.random()*W,y:10+Math.random()*40,s:Math.random()*.5+.3});
-hs=parseInt(localStorage.getItem('dinoHS')||'0');
-document.getElementById('gameHS').textContent='BEST: '+hs;
-document.getElementById('gameHint').textContent='KLICKEN / LEERTASTE';
-document.getElementById('gameScore').textContent='0';
-}
-function jmp(){
-if(go){init();return}
-if(dino.y>=GROUND-24){dino.vy=J;document.getElementById('gameHint').textContent=''}
-}
-function upd(){
-if(go)return;
-fr++;sc=Math.floor(fr/7);
-if(sc>hs){hs=sc;localStorage.setItem('dinoHS',hs);document.getElementById('gameHS').textContent='BEST: '+hs}
-sp=5+Math.floor(sc/70)*.4;
-dino.vy+=G;dino.y+=dino.vy;
-let gnd=GROUND-24;
-if(dino.y>gnd){dino.y=gnd;dino.vy=0}
-dino.leg=Math.sin(fr*.25)*4;
-if(fr%50===0&&obs.length<3){
-let r=Math.random();
-if(r<.5){
-let h=20+Math.random()*16;
-obs.push({x:W+10,y:GROUND-h,w:8+Math.random()*4,h,t:'c'});
-}else if(r<.75){
-obs.push({x:W+10,y:GROUND-16,w:14,h:16,t:'b'});
-}else{
-obs.push({x:W+10,y:GROUND-22,w:18,h:22,t:'f'});
-}
-}
-obs=obs.filter(o=>{o.x-=sp;return o.x>-50});
-stars.forEach(s=>{s.x-=sp*.2;if(s.x<0){s.x=W+5;s.y=10+Math.random()*40}});
-for(let o of obs){
-let mx=dino.x+4,my=dino.y+6,mw=dino.w-8,mh=dino.h-10;
-if(mx<o.x+o.w&&mx+mw>o.x&&my<o.y+o.h&&my+mh>o.y){
-go=1;document.getElementById('gameHint').textContent='GAME OVER – KLICKEN';
-break;
-}
-}
-document.getElementById('gameScore').textContent=sc;
-}
-function drDino(x,y){
-let s=y<GROUND-24?0:dino.leg;
-ctx.fillStyle='#4a8a3a';
-ctx.fillRect(x-2,y+2,4,6);
-ctx.fillRect(x+dino.w-2,y+2,4,6);
-ctx.fillStyle='#3a7a2a';
-ctx.fillRect(x,y,dino.w,dino.h-2);
-ctx.fillRect(x+4,y-8,dino.w-8,12);
-ctx.fillStyle='#5a9a4a';
-ctx.fillRect(x+2,y-4,3,4);
-ctx.fillRect(x+dino.w-5,y-4,3,4);
-ctx.fillStyle='#2a5a1a';
-ctx.fillRect(x,y,2,dino.h-6);
-ctx.fillRect(x+dino.w-2,y,2,dino.h-6);
-ctx.fillRect(x+4,y-8,dino.w-8,3);
-ctx.fillStyle='#fff';
-ctx.beginPath();ctx.arc(x+10,y-4,3.5,0,Math.PI*2);ctx.fill();
-ctx.fillStyle='#111';
-ctx.beginPath();ctx.arc(x+11.5,y-5,1.5,0,Math.PI*2);ctx.fill();
-ctx.fillStyle='#cc3333';
-ctx.beginPath();ctx.arc(x+16,y-3,1.2,0,Math.PI*2);ctx.fill();
-ctx.beginPath();ctx.arc(x+15,y+4,2,0,Math.PI);ctx.fill();
-ctx.fillStyle='#2a5a1a';
-ctx.fillRect(x+dino.w-3,y+5,6,3);
-if(y>=GROUND-24){
-ctx.fillStyle='#3a2a1a';
-ctx.fillRect(x+4+s,GROUND-6,4,3);
-ctx.fillRect(x+12-s,GROUND-6,4,3);
-}
-}
-function drCactus(x,y,w,h){
-ctx.fillStyle='#2a5a1a';
-ctx.fillRect(x,y,w,h);
-ctx.fillRect(x-2,y-12,4,14);
-ctx.fillRect(x+w-2,y-12,4,14);
-ctx.fillRect(x+2,y-10,w-4,5);
-ctx.fillStyle='#1a4a0a';
-ctx.fillRect(x,y,2,h-4);
-ctx.fillRect(x+w-2,y,2,h-4);
-ctx.fillStyle='#3a6a2a';
-ctx.fillRect(x+3,y+3,w-6,3);
-ctx.fillRect(x+3,y+h-6,w-6,3);
-}
-function drBone(x,y,w,h){
-ctx.fillStyle='#5a4a3a';
-ctx.fillRect(x+2,y+2,w-4,h-4);
-ctx.fillRect(x+4,y,w-8,2);
-ctx.fillRect(x+4,y+h-2,w-8,2);
-ctx.fillStyle='#6a5a4a';
-ctx.fillRect(x+3,y+3,w-6,2);
-ctx.fillRect(x+3,y+h-5,w-6,2);
-ctx.fillStyle='#4a3a2a';
-ctx.beginPath();ctx.arc(x+3,y+2,3,0,Math.PI*2);ctx.fill();
-ctx.beginPath();ctx.arc(x+w-3,y+2,3,0,Math.PI*2);ctx.fill();
-ctx.beginPath();ctx.arc(x+3,y+h-2,3,0,Math.PI*2);ctx.fill();
-ctx.beginPath();ctx.arc(x+w-3,y+h-2,3,0,Math.PI*2);ctx.fill();
-}
-function drFossil(x,y,w,h){
-ctx.fillStyle='#4a3a2a';
-ctx.fillRect(x+2,y+4,w-4,h-8);
-ctx.fillRect(x+6,y,w-12,4);
-ctx.fillRect(x+6,y+h-4,w-12,4);
-ctx.fillStyle='#5a4a3a';
-ctx.fillRect(x+4,y+6,w-8,h-12);
-ctx.fillStyle='#3a2a1a';
-ctx.beginPath();ctx.arc(x+5,y+5,3,0,Math.PI*2);ctx.fill();
-ctx.beginPath();ctx.arc(x+w-5,y+5,3,0,Math.PI*2);ctx.fill();
-}
-function dr(){
-ctx.clearRect(0,0,W,H);
-ctx.fillStyle='#080804';ctx.fillRect(0,0,W,H);
-stars.forEach(s=>{ctx.fillStyle='rgba(255,255,200,'+s.s+')';ctx.beginPath();ctx.arc(s.x,s.y,1.5,0,Math.PI*2);ctx.fill()});
-let gx=((fr*2)%20)-10;
-ctx.fillStyle='#1a1810';ctx.fillRect(0,GROUND,W,2);
-ctx.strokeStyle='#1a2a12';
-for(let i=0;i<35;i++){let tx=((i*20-gx)%W+W)%W;ctx.beginPath();ctx.moveTo(tx,GROUND);ctx.lineTo(tx+10,GROUND+4);ctx.stroke();ctx.fillRect(tx+2,GROUND+4,2,2)}
-obs.forEach(o=>{
-if(o.t==='c')drCactus(o.x,o.y,o.w,o.h);
-else if(o.t==='b')drBone(o.x,o.y,o.w,o.h);
-else drFossil(o.x,o.y,o.w,o.h);
-});
-drDino(dino.x,dino.y);
-if(go){
-ctx.fillStyle='rgba(0,0,0,0.35)';ctx.fillRect(0,0,W,H);
-ctx.fillStyle='#cc3333';ctx.font='bold 14px "Share Tech Mono",monospace';ctx.textAlign='center';
-ctx.fillText('GAME OVER',W/2,90);
-ctx.fillStyle='#6a9a4a';ctx.font='10px "Share Tech Mono",monospace';
-ctx.fillText('SCORE: '+sc+'  BEST: '+hs,W/2,115);
-}
-}
-function lp(){upd();dr();requestAnimationFrame(lp)}
-gc.addEventListener('click',jmp);
-document.addEventListener('keydown',function(e){if(e.code==='Space'){e.preventDefault();jmp()}});
-init();lp();
-}
-</script>
-<script>
-async function submitWhitelist(){
+function submitWL(){
 const i=document.getElementById('wlInput');
 const m=document.getElementById('wlMsg');
 const f=document.getElementById('wlForm');
-const name=i.value.trim();
-if(!name||name.length<3||name.length>16){m.textContent='✗ Bitte gültigen Minecraft-Namen eingeben (3-16 Zeichen)';m.style.display='block';return}
-m.style.display='none';
-f.style.opacity='0.5';
-const btn=f.querySelector('.wl-btn');
-btn.textContent='✗ SENDE ...';
-try{
-const r=await fetch('https://discord.com/api/webhooks/1517679748468179076/sbchlxoinOKjb6szGp1MftfH003fxDjQYdoHbBZTNyfW1fTxk9YSvodzJ3Szuur7duai',{
-method:'POST',
-headers:{'Content-Type':'application/json'},
-body:JSON.stringify({content:'**Neuer Whitelist-Antrag:** '+name})
-});
-if(!r.ok)throw new Error();
-f.innerHTML='<div class="wl-success">✔ GESENDET</div>';
-m.textContent='Du wirst innerhalb der nächsten Minuten bis Stunden zur Whitelist hinzugefügt.';
-m.style.display='block';m.className='wl-msg wl-ok';
-startGame();
-}catch(e){
-f.style.opacity='1';
-btn.textContent='✗ ABSENDEN';
-m.textContent='✗ Fehler beim Senden. Bitte versuche es erneut.';
-m.style.display='block';m.className='wl-msg wl-err';
+const n=i.value.trim();
+if(!n||n.length<3||n.length>16){m.innerHTML='<div class="msg-err">Bitte gib einen gültigen Namen ein (3-16 Zeichen).</div>';return}
+m.innerHTML='<div class="msg-wait">Sende...</div>';
+fetch('https://discord.com/api/webhooks/1517679748468179076/sbchlxoinOKjb6szGp1MftfH003fxDjQYdoHbBZTNyfW1fTxk9YSvodzJ3Szuur7duai',{
+method:'POST',headers:{'Content-Type':'application/json'},
+body:JSON.stringify({content:'**Neuer Whitelist-Antrag:** '+n})
+}).then(r=>{if(!r.ok)throw Error();f.innerHTML='<div class="msg-ok">&#10003; Abgeschickt</div>';m.innerHTML='<div class="msg-ok">Du wirst in Kürze hinzugefügt.</div>';startGame()}).catch(()=>{m.innerHTML='<div class="msg-err">Fehler. Bitte erneut versuchen.</div>'});
 }
+</script>
+<script>
+let gameReady=0,gc,ctx,W=700,H=200;
+function startGame(){
+if(gameReady)return;gameReady=1;
+document.getElementById('game').style.display='block';
+gc=document.getElementById('c');ctx=gc.getContext('2d');
+const G=0.6,J=-11,GROUND=158,RUN=136;
+let dino,obs,stars,fr,sc,sp,go,hs;
+function init(){
+dino={x:60,y:RUN,w:20,h:24,vy:0,leg:0};obs=[];stars=[];fr=0;sc=0;sp=5;go=0;
+for(let i=0;i<5;i++)stars.push({x:Math.random()*W,y:10+Math.random()*40,s:Math.random()*.5+.3});
+hs=parseInt(localStorage.getItem('dinoHS')||'0');
+document.getElementById('hs').textContent=hs;document.getElementById('hint').textContent='Drücke SPACE oder klicke zum Springen';document.getElementById('score').textContent='0';
 }
-document.getElementById('wlInput').addEventListener('keydown',function(e){if(e.key==='Enter')submitWhitelist()});
+function jmp(){
+if(go){init();return}if(dino.y>=RUN){dino.vy=J;document.getElementById('hint').textContent=''}
+}
+function upd(){
+if(go)return;fr++;sc=Math.floor(fr/7);
+if(sc>hs){hs=sc;localStorage.setItem('dinoHS',hs);document.getElementById('hs').textContent=hs}
+sp=5+Math.floor(sc/70)*.4;dino.vy+=G;dino.y+=dino.vy;
+if(dino.y>RUN){dino.y=RUN;dino.vy=0}dino.leg=Math.sin(fr*.25)*4;
+if(fr%50===0&&obs.length<3){let r=Math.random();if(r<.5){let h=20+Math.random()*16;obs.push({x:W+10,y:GROUND-h,w:8+Math.random()*4,h,t:'c'})}else if(r<.75){obs.push({x:W+10,y:GROUND-16,w:14,h:16,t:'b'})}else{obs.push({x:W+10,y:GROUND-22,w:18,h:22,t:'f'})}}
+obs=obs.filter(o=>{o.x-=sp;return o.x>-50});
+stars.forEach(s=>{s.x-=sp*.2;if(s.x<0){s.x=W+5;s.y=10+Math.random()*40}});
+for(let o of obs){let mx=dino.x+4,my=dino.y+6,mw=dino.w-8,mh=dino.h-10;if(mx<o.x+o.w&&mx+mw>o.x&&my<o.y+o.h&&my+mh>o.y){go=1;document.getElementById('hint').textContent='GAME OVER - Klicke zum Neustart';break}}
+document.getElementById('score').textContent=sc;
+}
+function drDino(x,y){let s=y<RUN?0:dino.leg;
+ctx.fillStyle='#4a8a3a';ctx.fillRect(x-2,y+2,4,6);ctx.fillRect(x+dino.w-2,y+2,4,6);
+ctx.fillStyle='#3a7a2a';ctx.fillRect(x,y,dino.w,dino.h-2);ctx.fillRect(x+4,y-8,dino.w-8,12);
+ctx.fillStyle='#5a9a4a';ctx.fillRect(x+2,y-4,3,4);ctx.fillRect(x+dino.w-5,y-4,3,4);
+ctx.fillStyle='#2a5a1a';ctx.fillRect(x,y,2,dino.h-6);ctx.fillRect(x+dino.w-2,y,2,dino.h-6);ctx.fillRect(x+4,y-8,dino.w-8,3);
+ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(x+10,y-4,3.5,0,Math.PI*2);ctx.fill();
+ctx.fillStyle='#111';ctx.beginPath();ctx.arc(x+11.5,y-5,1.5,0,Math.PI*2);ctx.fill();
+ctx.fillStyle='#cc3333';ctx.beginPath();ctx.arc(x+16,y-3,1.2,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.arc(x+15,y+4,2,0,Math.PI);ctx.fill();
+ctx.fillStyle='#2a5a1a';ctx.fillRect(x+dino.w-3,y+5,6,3);
+if(y>=RUN){ctx.fillStyle='#3a2a1a';ctx.fillRect(x+4+s,GROUND-6,4,3);ctx.fillRect(x+12-s,GROUND-6,4,3)}}
+function drCactus(x,y,w,h){ctx.fillStyle='#2a5a1a';ctx.fillRect(x,y,w,h);ctx.fillRect(x-2,y-12,4,14);ctx.fillRect(x+w-2,y-12,4,14);ctx.fillRect(x+2,y-10,w-4,5);ctx.fillStyle='#1a4a0a';ctx.fillRect(x,y,2,h-4);ctx.fillRect(x+w-2,y,2,h-4);ctx.fillStyle='#3a6a2a';ctx.fillRect(x+3,y+3,w-6,3);ctx.fillRect(x+3,y+h-6,w-6,3);}
+function drBone(x,y,w,h){ctx.fillStyle='#5a4a3a';ctx.fillRect(x+2,y+2,w-4,h-4);ctx.fillRect(x+4,y,w-8,2);ctx.fillRect(x+4,y+h-2,w-8,2);ctx.fillStyle='#6a5a4a';ctx.fillRect(x+3,y+3,w-6,2);ctx.fillRect(x+3,y+h-5,w-6,2);ctx.fillStyle='#4a3a2a';ctx.beginPath();ctx.arc(x+3,y+2,3,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.arc(x+w-3,y+2,3,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.arc(x+3,y+h-2,3,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.arc(x+w-3,y+h-2,3,0,Math.PI*2);ctx.fill();}
+function drFossil(x,y,w,h){ctx.fillStyle='#4a3a2a';ctx.fillRect(x+2,y+4,w-4,h-8);ctx.fillRect(x+6,y,w-12,4);ctx.fillRect(x+6,y+h-4,w-12,4);ctx.fillStyle='#5a4a3a';ctx.fillRect(x+4,y+6,w-8,h-12);ctx.fillStyle='#3a2a1a';ctx.beginPath();ctx.arc(x+5,y+5,3,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.arc(x+w-5,y+5,3,0,Math.PI*2);ctx.fill();}
+function dr(){ctx.clearRect(0,0,W,H);ctx.fillStyle='#0a1a0a';ctx.fillRect(0,0,W,H);
+stars.forEach(s=>{ctx.fillStyle='rgba(255,255,200,'+s.s+')';ctx.beginPath();ctx.arc(s.x,s.y,1.5,0,Math.PI*2);ctx.fill()});
+let gx=((fr*2)%20)-10;ctx.fillStyle='#1a2a10';ctx.fillRect(0,GROUND,W,2);
+for(let i=0;i<35;i++){let tx=((i*20-gx)%W+W)%W;ctx.strokeStyle='#1a3a12';ctx.beginPath();ctx.moveTo(tx,GROUND);ctx.lineTo(tx+10,GROUND+4);ctx.stroke();ctx.fillRect(tx+2,GROUND+4,2,2)}
+obs.forEach(o=>{if(o.t==='c')drCactus(o.x,o.y,o.w,o.h);else if(o.t==='b')drBone(o.x,o.y,o.w,o.h);else drFossil(o.x,o.y,o.w,o.h)});drDino(dino.x,dino.y);
+if(go){ctx.fillStyle='rgba(0,0,0,0.35)';ctx.fillRect(0,0,W,H);ctx.fillStyle='#cc3333';ctx.font='bold 14px Arial,sans-serif';ctx.textAlign='center';ctx.fillText('GAME OVER',W/2,90);ctx.fillStyle='#006600';ctx.font='11px Arial,sans-serif';ctx.fillText('Score: '+sc+'  Best: '+hs,W/2,115)}}
+function lp(){upd();dr();requestAnimationFrame(lp)}
+gc.addEventListener('click',jmp);document.addEventListener('keydown',function(e){if(e.code==='Space'){e.preventDefault();jmp()}});
+init();lp();
+}
 </script>
 <script src="script.js"></script>
 </body>
