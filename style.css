@@ -180,26 +180,47 @@ background:rgba(0,0,0,0.15);
 }
 
 .card-diff .card-label{color:#8b6a3a}
-.diff-bar{text-align:center;font-size:.78rem;letter-spacing:1px;color:#6a5a3a;margin-bottom:8px}
+.diff-bar{text-align:center;font-size:.82rem;letter-spacing:1px;color:#6a5a3a;margin-bottom:10px;font-weight:600}
 .diff-bar .old-lbl{color:#b84a3a}
 .diff-bar .new-lbl{color:#6a9a4a}
-.diff-bar .sep{color:#8b6a3a;margin:0 8px;opacity:.5}
-.stats{text-align:center;margin-bottom:8px;display:flex;gap:6px;justify-content:center;flex-wrap:wrap}
-.stat{display:inline-flex;align-items:center;gap:6px;padding:4px 14px;border:1px solid #2a1e12;background:rgba(0,0,0,0.1)}
-.stat .num{font-family:Cinzel,serif;font-size:1.1rem;font-weight:700}
-.stat .lbl{font-size:.62rem;color:#6a5a3a;letter-spacing:1px;text-transform:uppercase}
+.diff-bar .sep{color:#8b6a3a;margin:0 10px;opacity:.6}
+.stats{text-align:center;margin-bottom:8px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.stat{display:inline-flex;align-items:center;gap:8px;padding:6px 18px;border:1px solid #2a1e12;background:rgba(0,0,0,0.15)}
+.stat .num{font-family:Cinzel,serif;font-size:1.2rem;font-weight:700}
+.stat .lbl{font-size:.65rem;color:#6a5a3a;letter-spacing:1px;text-transform:uppercase}
 .stat-new .num{color:#6a9a4a}
 .stat-removed .num{color:#b84a3a}
 .legend{display:flex;gap:16px;justify-content:center;font-size:.7rem;color:#6a5a3a;letter-spacing:1px}
+
+.card-filters{text-align:center}
+.card-filters .card-label{color:#8b6a3a}
+.filters{display:flex;gap:6px;justify-content:center;flex-wrap:wrap}
+.tab{
+background:rgba(0,0,0,0.2);border:1px solid #2a1e12;
+color:#8a7a6a;padding:8px 16px;
+font-family:Cinzel,serif;font-size:.7rem;letter-spacing:2px;
+cursor:pointer;text-transform:uppercase;
+transition:all .2s;
+}
+.tab:hover{background:rgba(30,22,16,0.4);border-color:#3a2a1a;color:#b8a890}
+.tab.active{background:rgba(184,134,11,0.08);border-color:#8b6a3a;color:#d4b87a}
+.tab-new.active{border-color:#6a9a4a;color:#6a9a4a;background:rgba(106,154,74,0.08)}
+.tab-removed.active{border-color:#b84a3a;color:#b84a3a;background:rgba(184,74,58,0.08)}
+.tab-unchanged.active{border-color:#5a4a3a;color:#8a7a6a;background:rgba(90,74,58,0.08)}
+.tab-cnt{
+display:inline-block;margin-left:5px;
+font-size:.6rem;padding:1px 6px;border-radius:3px;
+background:rgba(255,255,255,0.05);color:inherit;min-width:18px;
+}
 .legend span{display:flex;align-items:center;gap:5px}
 .d{width:8px;height:8px;display:inline-block;border:1px solid;flex-shrink:0}
 .dot-green{background:#6a9a4a;border-color:#6a9a4a}
 .dot-red{background:#b84a3a;border-color:#b84a3a}
 .dot-grey{background:transparent;border-color:#3a2a1a}
 
-.badge{font-size:.6rem;padding:2px 8px;letter-spacing:1px;border:1px solid;font-family:Cinzel,serif}
-.badge-new{color:#6a9a4a;border-color:rgba(106,154,74,0.2)}
-.badge-removed{color:#b84a3a;border-color:rgba(184,74,58,0.2)}
+.badge{font-size:.65rem;padding:2px 10px;letter-spacing:2px;font-family:Cinzel,serif;border-radius:2px}
+.badge-new{color:#7aba5a;border:1px solid rgba(106,154,74,0.25);background:rgba(106,154,74,0.08)}
+.badge-removed{color:#cc5a4a;border:1px solid rgba(184,74,58,0.25);background:rgba(184,74,58,0.08)}
 
 .card-search .card-label{color:#8b6a3a}
 .card-search input{

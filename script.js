@@ -315,7 +315,6 @@ const newMods=[
 "PickUpNotifier-v8.0.0-1.20.1-Forge.jar",
 "Placebo-1.20.1-8.6.3.jar",
 "polymorph-forge-0.49.10+1.20.1.jar",
-"Prehistoric_Fauna-2.3.3.jar",
 "PuzzlesLib-v8.1.33-1.20.1-Forge.jar",
 "refinedcooking-4.0.0.jar",
 "refinedpolymorph-0.1.1-1.20.1.jar",
@@ -365,25 +364,25 @@ const newMods=[
 const oldSet=new Set(oldMods);
 const newSet=new Set(newMods);
 
-const result=[];
-const seen=new Set();
+const allMods=[];
+const seenSet=new Set();
 for(const m of newMods){
-result.push({name:m,status:oldSet.has(m)?'unchanged':'new'});
-seen.add(m);
+allMods.push({name:m,status:oldSet.has(m)?'unchanged':'new'});
+seenSet.add(m);
 }
 for(const m of oldMods){
-if(!seen.has(m)){
-result.push({name:m,status:'removed'});
-seen.add(m);
+if(!seenSet.has(m)){
+allMods.push({name:m,status:'removed'});
+seenSet.add(m);
 }
 }
 
-const added=result.filter(m=>m.status==='new').length;
-const removed=result.filter(m=>m.status==='removed').length;
+const added=allMods.filter(m=>m.status==='new').length;
+const removed=allMods.filter(m=>m.status==='removed').length;
+const unchanged=allMods.filter(m=>m.status==='unchanged').length;
+let currentFilter='all';
 
-function fmt(name){
-return name.replace(/\.jar$/,'').replace(/\.disabled$/,'');
-}
+function fmt(n){return n.replace(/\.jar$/,'').replace(/\.disabled$/,'')}
 
 function render(list){
 const el=document.getElementById('modList');
@@ -393,7 +392,7 @@ for(const m of list){
 const d=document.createElement('div');
 d.className='mod-item '+m.status;
 const dot=document.createElement('span');
-dot.className='dot dot-'+m.status;
+dot.className='d '+(m.status==='new'?'dot-green':m.status==='removed'?'dot-red':'dot-grey');
 d.appendChild(dot);
 const n=document.createElement('span');
 n.className='mod-name';
@@ -414,20 +413,36 @@ el.appendChild(d);
 no.style.display=list.length===0?'block':'none';
 }
 
-document.getElementById('diffBar').innerHTML='<span class="old-lbl">Vorher ('+oldMods.length+')</span><span class="sep">→</span><span class="new-lbl">Nachher ('+newMods.length+')</span>';
+function filter(s){
+currentFilter=s;
+document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.filter===s));
+let list=s==='all'?allMods:s==='new'?allMods.filter(m=>m.status==='new'):s==='removed'?allMods.filter(m=>m.status==='removed'):allMods.filter(m=>m.status==='unchanged');
+const q=document.getElementById('search').value.toLowerCase();
+if(q)list=list.filter(m=>m.name.toLowerCase().includes(q));
+render(list);
+}
+
+document.getElementById('diffBar').innerHTML='<span class="old-lbl">Erste Version ('+oldMods.length+')</span><span class="sep">→</span><span class="new-lbl">Aktuell ('+newMods.length+')</span>';
 document.getElementById('stats').innerHTML=
-'<div class="stat"><span class="num">'+newMods.length+'</span><span class="lbl">Mods</span></div>'+
-'<div class="stat stat-new"><span class="num">+'+(added)+'</span><span class="lbl">Neu</span></div>'+
-'<div class="stat stat-removed"><span class="num">−'+(removed)+'</span><span class="lbl">Entfernt</span></div>';
+'<div class="stat"><span class="num">'+newMods.length+'</span><span class="lbl">Mods gesamt</span></div>'+
+'<div class="stat stat-new"><span class="num">+'+added+'</span><span class="lbl">Neu</span></div>'+
+'<div class="stat stat-removed"><span class="num">−'+removed+'</span><span class="lbl">Entfernt</span></div>';
+
+document.getElementById('filters').innerHTML=
+'<button class="tab active" data-filter="all" onclick="filter(\'all\')">Alle <span class="tab-cnt">'+(unchanged+added+removed)+'</span></button>'+
+'<button class="tab tab-new" data-filter="new" onclick="filter(\'new\')">Neu <span class="tab-cnt">'+added+'</span></button>'+
+'<button class="tab tab-removed" data-filter="removed" onclick="filter(\'removed\')">Entfernt <span class="tab-cnt">'+removed+'</span></button>'+
+'<button class="tab tab-unchanged" data-filter="unchanged" onclick="filter(\'unchanged\')">Unverändert <span class="tab-cnt">'+unchanged+'</span></button>';
 
 document.getElementById('search').addEventListener('input',function(){
 const q=this.value.toLowerCase();
-if(!q){render(result);return}
-const f=result.filter(m=>m.name.toLowerCase().includes(q));
-render(f);
+const list=currentFilter==='all'?allMods:currentFilter==='new'?allMods.filter(m=>m.status==='new'):currentFilter==='removed'?allMods.filter(m=>m.status==='removed'):allMods.filter(m=>m.status==='unchanged');
+if(!q){render(list);return}
+render(list.filter(m=>m.name.toLowerCase().includes(q)));
 });
 
-render(result);
+filter('all');
+
 
 
 
